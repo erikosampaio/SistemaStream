@@ -1,4 +1,4 @@
-package Repositories;
+package Repository;
 
 import Domain.Filme;
 
@@ -109,7 +109,6 @@ public class FilmeRepository {
     public boolean updateFilme(Filme filmeAtualizado, String titulo) {
         Filme filme = buscaPorTitulo(titulo);
         if (Objects.isNull(filme)) {
-            System.out.println("Filme não encontrado para atualização!");
             return false;
         }
         String novoTitulo = filmeAtualizado.getTitulo();

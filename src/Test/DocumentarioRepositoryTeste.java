@@ -1,17 +1,15 @@
-package Tests;
+package Test;
 
 import Domain.Documentario;
-import Domain.Show;
-import Repositories.DocumentarioRepository;
-import Repositories.ShowRepository;
+import Repository.DocumentarioRepository;
 
 public class DocumentarioRepositoryTeste {
     public static void main(String[] args) {
 
 
-        Documentario d1 = new Documentario("Breaking Bad", 2013, "Ação");
-        Documentario d2 = new Documentario("Spartacus", 2015, "Guerra");
-        Documentario d3 = new Documentario("Supernatural", 2006, "Fantasia");
+        Documentario d1 = new Documentario("Pelé", 2013, "Esporte");
+        Documentario d2 = new Documentario("Animal", 2020, "Selvagem");
+        Documentario d3 = new Documentario("Cidade de Deus", 2012, "Drama");
 
         DocumentarioRepository documentarioDB = new DocumentarioRepository();
 
@@ -21,27 +19,30 @@ public class DocumentarioRepositoryTeste {
         System.out.println();
 
         System.out.println("Busca por título: ");
-        System.out.println(documentarioDB.buscaPorTitulo("Spartacus"));
+        System.out.println(documentarioDB.buscaPorTitulo("pelé"));
         System.out.println();
 
         System.out.println("Busca por ano: ");
-        documentarioDB.buscaPorAno(2006);
+        documentarioDB.buscaPorAno(2012);
         System.out.println();
 
         System.out.println("Busca por gênero: ");
-        documentarioDB.buscaPorGenero("guerra");
+        documentarioDB.buscaPorGenero("selvagem");
         System.out.println();
         System.out.println();
 
         System.out.println("Lista atual de documentário: ");
         documentarioDB.getListaDocumentario();
 
-        documentarioDB.removePorTitulo("BREAKING BAD");
+        documentarioDB.removePorTitulo("cidade de Deus");
         System.out.println();
 
-        Documentario d4 = new Documentario("Breaking Bad", 2014, "Ação");
+        System.out.println("Lista atual de documentário: ");
+        documentarioDB.getListaDocumentario();
 
-        documentarioDB.updateDocumentario(d4, "breaking bad");
+        Documentario d4 = new Documentario("Pelé", 2019, "Esporte");
+
+        documentarioDB.updateDocumentario(d4, "pelé");
         System.out.println();
 
         System.out.println("Lista atual de documentário: ");

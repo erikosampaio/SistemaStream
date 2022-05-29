@@ -1,11 +1,7 @@
-package Tests;
+package Test;
 
-import Domain.Documentario;
-import Domain.Filme;
 import Domain.Show;
-import Repositories.DocumentarioRepository;
-import Repositories.FilmeRepository;
-import Repositories.ShowRepository;
+import Repository.ShowRepository;
 
 public class ShowRepositoryTeste {
     public static void main(String[] args) {

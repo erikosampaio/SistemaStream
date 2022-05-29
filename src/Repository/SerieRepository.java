@@ -1,7 +1,6 @@
-package Repositories;
+package Repository;
 
 import Domain.Serie;
-import Domain.Show;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +9,16 @@ import java.util.Objects;
 public class SerieRepository {
     private List<Serie> series = new ArrayList<>();
 
+    public void getListaSerie() {
+        for (Serie serie : series) {
+            System.out.println(serie);
+            System.out.println();
+        }
+    }
+
     public void addSerie(Serie serie) {
         series.add(serie);
-        System.out.println("Série adicionado com sucesso!");
+        System.out.println("Série - " + serie.getTitulo() + " - adicionada com sucesso!");
     }
 
     public Serie buscaPorTitulo(String buscaTitulo) {
@@ -26,12 +32,11 @@ public class SerieRepository {
         return null;
     }
 
-    public void buscaPorAno(int BuscAno) {
+    public void buscaPorAno(int buscaAno) {
         int cont = 0;
         for ( Serie serie : series) {
-            if (BuscAno == serie.getAno()) {
+            if (buscaAno == serie.getAno()) {
                 System.out.println(serie);
-                System.out.println();
                 cont = 1;
             }
         }
@@ -44,9 +49,8 @@ public class SerieRepository {
         int cont = 0;
         buscaGenero = buscaGenero.toLowerCase();
         for ( Serie serie : series) {
-            if (serie.getEstilo().toLowerCase().equals(buscaGenero)) {
+            if (serie.getGenero().toLowerCase().equals(buscaGenero)) {
                 System.out.println(serie);
-                System.out.println();
                 cont = 1;
             }
         }
@@ -60,7 +64,7 @@ public class SerieRepository {
         for (Serie serie : series) {
             if (serie.getTitulo().toLowerCase().equals(apagaTitulo)) {
                 series.remove(serie);
-                System.out.println("Série removido com sucesso!");
+                System.out.println("Série - " + serie.getTitulo() + " - removida com sucesso!");
                 return true;
             }
         }
@@ -73,15 +77,14 @@ public class SerieRepository {
     }
 
     //encontrar filme na base pelo título
-    public boolean updateSerie(Show serieAtualizada, String titulo) {
+    public boolean updateSerie(Serie serieAtualizada, String titulo) {
         Serie serie = buscaPorTitulo(titulo);
         if (Objects.isNull(serie)) {
-            System.out.println("Série não encontrado para atualização!");
             return false;
         }
         String novoTitulo = serieAtualizada.getTitulo();
         int novoAno = serieAtualizada.getAno();
-        String novoGenero = serieAtualizada.getEstilo();
+        String novoGenero = serieAtualizada.getGenero();
 
         // Verifica quais campos é preciso atualizar
         if (isValidString(novoTitulo)) {
@@ -91,7 +94,7 @@ public class SerieRepository {
             serie.setGenero(novoGenero);
         }
         serie.setAno(novoAno);
-        System.out.println("Série - " + serie.getTitulo() + " - atualizado com sucesso!");
+        System.out.println("Série - " + serie.getTitulo() + " - atualizada com sucesso!");
         return  true;
     }
 }

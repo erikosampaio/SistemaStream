@@ -1,6 +1,5 @@
-package Repositories;
+package Repository;
 
-import Domain.Filme;
 import Domain.Show;
 
 import java.util.ArrayList;
@@ -98,7 +97,6 @@ public class ShowRepository {
     public boolean updateFilme(Show showAtualizado, String titulo) {
         Show show = buscaPorTitulo(titulo);
         if (Objects.isNull(show)) {
-            System.out.println("Show não encontrado para atualização!");
             return false;
         }
         String novoTitulo = show.getTitulo();

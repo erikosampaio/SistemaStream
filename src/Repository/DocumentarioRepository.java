@@ -1,7 +1,6 @@
-package Repositories;
+package Repository;
 
 import Domain.Documentario;
-import Domain.Show;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +80,6 @@ public class DocumentarioRepository {
     public boolean updateDocumentario(Documentario documentarioAtualizado, String titulo) {
         Documentario documentario = buscaPorTitulo(titulo);
         if (Objects.isNull(documentario)) {
-            System.out.println("Documentário não encontrado para atualização!");
             return false;
         }
         String novoTitulo = documentarioAtualizado.getTitulo();

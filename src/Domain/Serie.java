@@ -20,7 +20,7 @@ public class Serie {
         return ano;
     }
 
-    public String getEstilo() {
+    public String getGenero() {
         return genero;
     }
 

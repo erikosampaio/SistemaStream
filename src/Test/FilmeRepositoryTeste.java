@@ -1,10 +1,7 @@
-package Tests;
+package Test;
 
-import Domain.Documentario;
 import Domain.Filme;
-import Domain.Show;
-import Repositories.DocumentarioRepository;
-import Repositories.FilmeRepository;
+import Repository.FilmeRepository;
 
 public class FilmeRepositoryTeste {
 
