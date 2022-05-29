@@ -10,9 +10,16 @@ import java.util.Objects;
 public class ShowRepository {
     private List<Show> shows = new ArrayList<>();
 
+    public void getListaShow() {
+        for (Show show : shows) {
+            System.out.println(show);
+            System.out.println();
+        }
+    }
+
     public void addShow(Show show) {
         shows.add(show);
-        System.out.println("Show adicionado com sucesso!");
+        System.out.println("Show - " + show.getTitulo() + " - adicionado com sucesso!");
     }
 
     public Show buscaPorTitulo(String buscaTitulo) {
@@ -26,10 +33,10 @@ public class ShowRepository {
         return null;
     }
 
-    public void buscaPorAno(int BuscAno) {
+    public void buscaPorAno(int buscaAno) {
         int cont = 0;
         for ( Show show : shows) {
-            if (BuscAno == show.getAno()) {
+            if (buscaAno == show.getAno()) {
                 System.out.println(show);
                 System.out.println();
                 cont = 1;
@@ -71,14 +78,15 @@ public class ShowRepository {
     }
 
     public boolean removePorTitulo(String apagaTitulo) {
+        apagaTitulo = apagaTitulo.toLowerCase();
         for (Show show : shows) {
             if (show.getTitulo().toLowerCase().equals(apagaTitulo)) {
                 shows.remove(show);
-                System.out.println("Filme removido com sucesso!");
+                System.out.println("Show - " + show.getTitulo() + " - removido com sucesso!");
                 return true;
             }
         }
-        System.out.println("Não há filme com esse título!");
+        System.out.println("Não há show com esse título!");
         return false;
     }
 
@@ -108,6 +116,8 @@ public class ShowRepository {
         if (isValidString(novoEstilo)) {
             show.setEstilo(novoEstilo);
         }
+        show.setAno(novoAno);
+        System.out.println("Show - " + show.getTitulo() + " - atualizado com sucesso!");
         return  true;
     }
 }

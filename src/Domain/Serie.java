@@ -1,12 +1,12 @@
 package Domain;
 
-public class Documentario {
+public class Serie {
 
     private String titulo;
     private int ano;
     private String genero;
 
-    public Documentario(String titulo, int ano, String genero) {
+    public Serie(String titulo, int ano, String genero) {
         this.titulo = titulo;
         this.ano = ano;
         this.genero = genero;
@@ -20,7 +20,7 @@ public class Documentario {
         return ano;
     }
 
-    public String getGenero() {
+    public String getEstilo() {
         return genero;
     }
 
@@ -38,10 +38,10 @@ public class Documentario {
 
     @Override
     public String toString() {
-        return "==========Documentário==========\n" +
+        return "==========Série==========\n" +
                 "Título  -> " + titulo + '\n' +
                 "Ano     -> " + ano + '\n' +
                 "Gênero  -> " + genero + '\n' +
-                "===============================";
+                "=======================";
     }
 }

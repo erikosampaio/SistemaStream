@@ -51,7 +51,7 @@ public class Show {
         return "==========Show==========\n" +
                 "Título  -> " + titulo + '\n' +
                 "Ano     -> " + ano + '\n' +
-                "Artista    -> " + artista + '\n' +
+                "Artista -> " + artista + '\n' +
                 "Estilo  -> " + estilo + '\n' +
                 "=======================";
     }

@@ -1,5 +1,6 @@
 package Repositories;
 
+import Domain.Documentario;
 import Domain.Show;
 
 import java.util.ArrayList;
@@ -7,77 +8,68 @@ import java.util.List;
 import java.util.Objects;
 
 public class DocumentarioRepository {
-    private List<Show> shows = new ArrayList<>();
+    private List<Documentario> documentarios = new ArrayList<>();
 
-    public void addShow(Show show) {
-        shows.add(show);
-        System.out.println("Show adicionado com sucesso!");
+    public void getListaDocumentario() {
+        for (Documentario documentario : documentarios) {
+            System.out.println(documentario);
+            System.out.println();
+        }
     }
 
-    public Show buscaPorTitulo(String buscaTitulo) {
+    public void addDocumentario(Documentario documentario) {
+        documentarios.add(documentario);
+        System.out.println("Documentário - " + documentario.getTitulo() + " - adicionado com sucesso!");
+    }
+
+    public Documentario buscaPorTitulo(String buscaTitulo) {
         buscaTitulo = buscaTitulo.toLowerCase();
-        for ( Show show : shows) {
-            if (show.getTitulo().toLowerCase().equals(buscaTitulo)) {
-                return show;
+        for ( Documentario documentario : documentarios) {
+            if (documentario.getTitulo().toLowerCase().equals(buscaTitulo)) {
+                return documentario;
             }
         }
-        System.out.println("Não há show para o título desejado!");
+        System.out.println("Não há documentário para o título desejado!");
         return null;
     }
 
-    public void buscaPorAno(int BuscAno) {
+    public void buscaPorAno(int buscaAno) {
         int cont = 0;
-        for ( Show show : shows) {
-            if (BuscAno == show.getAno()) {
-                System.out.println(show);
-                System.out.println();
+        for ( Documentario documentario : documentarios) {
+            if (buscaAno == documentario.getAno()) {
+                System.out.println(documentario);
                 cont = 1;
             }
         }
         if (cont == 0) {
-            System.out.println("Não há show para o ano desejado!");
+            System.out.println("Não há documentário para o ano desejado!");
         }
     }
 
-    public void buscaPorArtista(String buscaArtista) {
+    public void buscaPorGenero(String buscaGenero) {
         int cont = 0;
-        buscaArtista = buscaArtista.toLowerCase();
-        for ( Show show : shows) {
-            if (show.getArtista().toLowerCase().equals(buscaArtista)) {
-                System.out.println(show);
-                System.out.println();
+        buscaGenero = buscaGenero.toLowerCase();
+        for ( Documentario documentario : documentarios) {
+            if (documentario.getGenero().toLowerCase().equals(buscaGenero)) {
+                System.out.println(documentario);
                 cont = 1;
             }
         }
         if (cont == 0) {
-            System.out.println("Não há show para o ator desejado!");
-        }
-    }
-
-    public void buscaPorEstilo(String BuscaEstilo) {
-        int cont = 0;
-        BuscaEstilo = BuscaEstilo.toLowerCase();
-        for ( Show show : shows) {
-            if (show.getEstilo().toLowerCase().equals(BuscaEstilo)) {
-                System.out.println(show);
-                System.out.println();
-                cont = 1;
-            }
-        }
-        if (cont == 0) {
-            System.out.println("Não há show para o gênero desejado!");
+            System.out.println("Não há documentário para o gênero desejado!");
         }
     }
 
     public boolean removePorTitulo(String apagaTitulo) {
-        for (Show show : shows) {
-            if (show.getTitulo().toLowerCase().equals(apagaTitulo)) {
-                shows.remove(show);
-                System.out.println("Filme removido com sucesso!");
+        apagaTitulo = apagaTitulo.toLowerCase();
+        for (Documentario documentario : documentarios) {
+            if (documentario.getTitulo().toLowerCase().equals(apagaTitulo)) {
+                documentarios.remove(documentario);
+                System.out.println("Documentário - " + documentario.getTitulo() + " - removido com sucesso!");
                 return true;
             }
         }
-        System.out.println("Não há filme com esse título!");
+        System.out.println("Não há documentário com esse título!");
         return false;
     }
 
@@ -86,27 +78,25 @@ public class DocumentarioRepository {
     }
 
     //encontrar filme na base pelo título
-    public boolean updateFilme(Show showAtualizado, String titulo) {
-        Show show = buscaPorTitulo(titulo);
-        if (Objects.isNull(show)) {
-            System.out.println("Show não encontrado para atualização!");
+    public boolean updateDocumentario(Documentario documentarioAtualizado, String titulo) {
+        Documentario documentario = buscaPorTitulo(titulo);
+        if (Objects.isNull(documentario)) {
+            System.out.println("Documentário não encontrado para atualização!");
             return false;
         }
-        String novoTitulo = show.getTitulo();
-        int novoAno = showAtualizado.getAno();
-        String novoArtista = showAtualizado.getArtista();
-        String novoEstilo = showAtualizado.getEstilo();
+        String novoTitulo = documentarioAtualizado.getTitulo();
+        int novoAno = documentarioAtualizado.getAno();
+        String novoGenero = documentarioAtualizado.getGenero();
 
         // Verifica quais campos é preciso atualizar
         if (isValidString(novoTitulo)) {
-            show.setTitulo(novoTitulo);
+            documentario.setTitulo(novoTitulo);
         }
-        if (isValidString(novoArtista)) {
-            show.setArtista(novoArtista);
+        if (isValidString(novoGenero)) {
+            documentario.setGenero(novoGenero);
         }
-        if (isValidString(novoEstilo)) {
-            show.setEstilo(novoEstilo);
-        }
+        documentario.setAno(novoAno);
+        System.out.println("Documentário - " + documentario.getTitulo() + " - atualizado com sucesso!");
         return  true;
     }
 }

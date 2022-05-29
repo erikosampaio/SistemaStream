@@ -9,9 +9,16 @@ import java.util.Objects;
 public class FilmeRepository {
     private List<Filme> filmes = new ArrayList<>();
 
+    public void getListaFilme() {
+        for (Filme filme : filmes) {
+            System.out.println(filme);
+            System.out.println();
+        }
+    }
+
     public void addFilme(Filme filme) {
         filmes.add(filme);
-        System.out.println("Filme adicionado com sucesso!");
+        System.out.println("Filme - " + filme.getTitulo() + " - adicionado com sucesso!");
     }
 
     public Filme buscaPorTitulo(String buscaTitulo) {
@@ -26,12 +33,11 @@ public class FilmeRepository {
         return null;
     }
 
-    public void buscaPorAno(int BuscAno) {
+    public void buscaPorAno(int buscaAno) {
         int cont = 0;
         for ( Filme filme : filmes) {
-            if (BuscAno == filme.getAno()) {
+            if (buscaAno == filme.getAno()) {
                 System.out.println(filme);
-                System.out.println();
                 cont = 1;
             }
         }
@@ -46,7 +52,6 @@ public class FilmeRepository {
         for ( Filme filme : filmes) {
             if (filme.getDiretor().toLowerCase().equals(BuscaDiretor)) {
                 System.out.println(filme);
-                System.out.println();
                 cont = 1;
             }
         }
@@ -61,7 +66,6 @@ public class FilmeRepository {
         for ( Filme filme : filmes) {
             if (filme.getAtor().toLowerCase().equals(BuscaAtor)) {
                 System.out.println(filme);
-                System.out.println();
                 cont = 1;
             }
         }
@@ -76,7 +80,6 @@ public class FilmeRepository {
         for ( Filme filme : filmes) {
             if (filme.getGenero().toLowerCase().equals(BuscaGenero)) {
                 System.out.println(filme);
-                System.out.println();
                 cont = 1;
             }
         }
@@ -86,10 +89,11 @@ public class FilmeRepository {
     }
 
     public boolean removePorTitulo(String apagaTitulo) {
+        apagaTitulo = apagaTitulo.toLowerCase();
         for (Filme filme : filmes) {
             if (filme.getTitulo().toLowerCase().equals(apagaTitulo)) {
                 filmes.remove(filme);
-                System.out.println("Filme removido com sucesso!");
+                System.out.println("Filme - " + filme.getTitulo() + " - removido com sucesso!");
                 return true;
             }
         }
@@ -108,7 +112,7 @@ public class FilmeRepository {
             System.out.println("Filme não encontrado para atualização!");
             return false;
         }
-        String novoTitulo = filme.getTitulo();
+        String novoTitulo = filmeAtualizado.getTitulo();
         int novoAno = filmeAtualizado.getAno();
         String novoDiretor = filmeAtualizado.getDiretor();
         String novoAtor = filmeAtualizado.getAtor();
@@ -127,6 +131,8 @@ public class FilmeRepository {
         if (isValidString(novoGenero)) {
             filme.setGenero(novoGenero);
         }
+        filme.setAno(novoAno);
+        System.out.println("Filme - " + filme.getTitulo() + " - atualizado com sucesso!");
         return  true;
     }
 }
