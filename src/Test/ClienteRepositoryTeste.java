@@ -1,13 +1,7 @@
 package Test;
 
 import Domain.Cliente;
-import Domain.Filme;
-import Repository.ClienteRepository;
-import Repository.FilmeRepository;
 import Service.Pagamento;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ClienteRepositoryTeste {
 

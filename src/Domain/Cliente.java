@@ -49,7 +49,7 @@ public class Cliente {
         this.pagamento = pagamento;
     }
 
-    public boolean isSituacao() {
+    public boolean Situacao() {
         return situacao;
     }
 

@@ -1,5 +1,4 @@
 import Domain.Cliente;
-import Domain.Documentario;
 import Repository.*;
 import Service.Pagamento;
 
@@ -10,7 +9,7 @@ public class Main {
 
     private static Scanner teclado = new Scanner(System.in);
 
-    private static FilmeRepository filmeRepository = new FilmeRepository();
+    private static MediaRepository mediaRepository = new MediaRepository();
 
     private static ShowRepository showRepository = new ShowRepository();
 

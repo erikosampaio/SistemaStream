@@ -1,30 +1,30 @@
 package Repository;
 
-import Domain.Filme;
+import Domain.Media;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class FilmeRepository {
-    private List<Filme> filmes = new ArrayList<>();
+public class MediaRepository {
+    private List<Media> medias = new ArrayList<>();
 
-    public void getListaFilme() {
-        for (Filme filme : filmes) {
-            System.out.println(filme);
+    public void getListaMedia() {
+        for (Media media : medias) {
+            System.out.println(media);
             System.out.println();
         }
     }
 
-    public void addFilme(Filme filme) {
-        filmes.add(filme);
+    public void addFilme(Media filme) {
+        medias.add(filme);
         System.out.println("Filme - " + filme.getTitulo() + " - adicionado com sucesso!");
     }
 
-    public Filme buscaPorTitulo(String buscaTitulo) {
+    public Media buscaPorTitulo(String buscaTitulo) {
         int cont = 0;
         buscaTitulo = buscaTitulo.toLowerCase();
-        for ( Filme filme : filmes) {
+        for ( Media filme : medias) {
             if (filme.getTitulo().toLowerCase().equals(buscaTitulo)) {
                 return filme;
             }
@@ -35,7 +35,7 @@ public class FilmeRepository {
 
     public void buscaPorAno(int buscaAno) {
         int cont = 0;
-        for ( Filme filme : filmes) {
+        for ( Media filme : medias) {
             if (buscaAno == filme.getAno()) {
                 System.out.println(filme);
                 cont = 1;
@@ -49,7 +49,7 @@ public class FilmeRepository {
     public void buscaPorDiretor(String BuscaDiretor) {
         int cont = 0;
         BuscaDiretor = BuscaDiretor.toLowerCase();
-        for ( Filme filme : filmes) {
+        for ( Media filme : medias) {
             if (filme.getDiretor().toLowerCase().equals(BuscaDiretor)) {
                 System.out.println(filme);
                 cont = 1;
@@ -63,7 +63,7 @@ public class FilmeRepository {
     public void buscaPorAtor(String BuscaAtor) {
         int cont = 0;
         BuscaAtor = BuscaAtor.toLowerCase();
-        for ( Filme filme : filmes) {
+        for ( Media filme : medias) {
             if (filme.getAtor().toLowerCase().equals(BuscaAtor)) {
                 System.out.println(filme);
                 cont = 1;
@@ -77,7 +77,7 @@ public class FilmeRepository {
     public void buscaPorGenero(String BuscaGenero) {
         int cont = 0;
         BuscaGenero = BuscaGenero.toLowerCase();
-        for ( Filme filme : filmes) {
+        for ( Media filme : medias) {
             if (filme.getGenero().toLowerCase().equals(BuscaGenero)) {
                 System.out.println(filme);
                 cont = 1;
@@ -90,9 +90,9 @@ public class FilmeRepository {
 
     public boolean removePorTitulo(String apagaTitulo) {
         apagaTitulo = apagaTitulo.toLowerCase();
-        for (Filme filme : filmes) {
+        for (Media filme : medias) {
             if (filme.getTitulo().toLowerCase().equals(apagaTitulo)) {
-                filmes.remove(filme);
+                medias.remove(filme);
                 System.out.println("Filme - " + filme.getTitulo() + " - removido com sucesso!");
                 return true;
             }
@@ -106,8 +106,8 @@ public class FilmeRepository {
     }
 
     //encontrar filme na base pelo título
-    public boolean updateFilme(Filme filmeAtualizado, String titulo) {
-        Filme filme = buscaPorTitulo(titulo);
+    public boolean updateFilme(Media filmeAtualizado, String titulo) {
+        Media filme = buscaPorTitulo(titulo);
         if (Objects.isNull(filme)) {
             return false;
         }
