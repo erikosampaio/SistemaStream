@@ -11,9 +11,13 @@ public class ClienteRepositoryTeste {
         ClienteRepository clienteDB = new ClienteRepository();
         Cliente c = new Cliente("Eriko", "201045", "3223-3514");
         Pagamento p = new Pagamento("PIX", "15/06/2022", c);
+        c.setPagamento(p);
+        c.atualizaSituacao();
 
         Cliente c1 = new Cliente("Arroz", "123", "5632-2533");
         Pagamento p1 = new Pagamento("Dinheiro", "20/07/2022", c1);
+        c1.setPagamento(p1);
+        c1.atualizaSituacao();
 
         Cliente c2 = new Cliente("Pedro", "20291029", "4423-4321");
 
@@ -58,7 +62,6 @@ public class ClienteRepositoryTeste {
         clienteDB.getListaCliente();
 
         Cliente c3 = new Cliente("Eriko", "15513515125", "123123-123123123");
-        Pagamento p3 = new Pagamento("PIX", "2022-05-20", c3);
 
         System.out.println("Atualizando cliente Eriko...");
         clienteDB.updateCliente(c3, "eriko");

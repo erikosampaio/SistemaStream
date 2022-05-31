@@ -10,7 +10,7 @@ public class Cliente {
     private String documento;
     private String telefone;
     private Pagamento pagamento;
-    private String situacao;
+    private String situacao = "Inativo";
 
     public Cliente(String nome, String documento, String telefone) {
         this.nome = nome;
@@ -51,12 +51,21 @@ public class Cliente {
     }
 
     public String getSituacao() {
-        if (Objects.isNull(this.getPagamento())) {
-            return "Inativo";
-        }
-        return "Ativo";
+        return situacao;
     }
 
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    public void atualizaSituacao() {
+        if (Objects.isNull(this.pagamento)) {
+            setSituacao("Inativo");
+        }
+        else {
+            setSituacao("Ativo");
+        }
+    }
     public String verificaTelefone() {
         if (Objects.isNull(this.telefone))
             return "";
@@ -64,7 +73,7 @@ public class Cliente {
     }
 
     public String Assistir(Cliente cliente) {
-        if (cliente.getSituacao().equals("Ativo")){
+        if (cliente.getSituacao().equalsIgnoreCase("Ativo")){
             return "Assistindo filme...";
         }
         return "Cliente inativo. Efetue o pagamento para liberar o serviço!";
