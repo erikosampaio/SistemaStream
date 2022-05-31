@@ -16,28 +16,28 @@ public class MediaRepository {
         }
     }
 
-    public void addFilme(Media filme) {
-        medias.add(filme);
-        System.out.println("Filme - " + filme.getTitulo() + " - adicionado com sucesso!");
+    public void addMedia(Media media) {
+        medias.add(media);
+        System.out.println(media.getCategoria() + " - " + media.getTitulo() + " - adicionado com sucesso!");
     }
 
     public Media buscaPorTitulo(String buscaTitulo) {
         int cont = 0;
         buscaTitulo = buscaTitulo.toLowerCase();
-        for ( Media filme : medias) {
-            if (filme.getTitulo().toLowerCase().equals(buscaTitulo)) {
-                return filme;
+        for ( Media media : medias) {
+            if (media.getTitulo().toLowerCase().equals(buscaTitulo)) {
+                return media;
             }
         }
-        System.out.println("Não há filme para o título desejado!");
+        System.out.println("Não há media para o título desejado!");
         return null;
     }
 
     public void buscaPorAno(int buscaAno) {
         int cont = 0;
-        for ( Media filme : medias) {
-            if (buscaAno == filme.getAno()) {
-                System.out.println(filme);
+        for ( Media media : medias) {
+            if (buscaAno == media.getAno()) {
+                System.out.println(media);
                 cont = 1;
             }
         }
@@ -49,55 +49,55 @@ public class MediaRepository {
     public void buscaPorDiretor(String BuscaDiretor) {
         int cont = 0;
         BuscaDiretor = BuscaDiretor.toLowerCase();
-        for ( Media filme : medias) {
-            if (filme.getDiretor().toLowerCase().equals(BuscaDiretor)) {
-                System.out.println(filme);
+        for ( Media media : medias) {
+            if (media.getDiretor().toLowerCase().equals(BuscaDiretor)) {
+                System.out.println(media);
                 cont = 1;
             }
         }
         if (cont == 0) {
-            System.out.println("Não há filme para o diretor desejado!");
+            System.out.println("Não há media com o diretor desejado!");
         }
     }
 
-    public void buscaPorAtor(String BuscaAtor) {
+    public void buscaPorAtor(String buscaAtor) {
         int cont = 0;
-        BuscaAtor = BuscaAtor.toLowerCase();
-        for ( Media filme : medias) {
-            if (filme.getAtor().toLowerCase().equals(BuscaAtor)) {
-                System.out.println(filme);
+        // buscaAtor = buscaAtor.toLowerCase();
+        for ( Media media : medias) {
+            if (media.getAtor().contains(buscaAtor)) {
+                System.out.println(media);
                 cont = 1;
             }
         }
         if (cont == 0) {
-            System.out.println("Não há filme para o ator desejado!");
+            System.out.println("Não há media para o ator desejado!");
         }
     }
 
-    public void buscaPorGenero(String BuscaGenero) {
+    public void buscaPorGenero(String buscaGenero) {
         int cont = 0;
-        BuscaGenero = BuscaGenero.toLowerCase();
-        for ( Media filme : medias) {
-            if (filme.getGenero().toLowerCase().equals(BuscaGenero)) {
-                System.out.println(filme);
+        buscaGenero = buscaGenero.toLowerCase();
+        for ( Media media : medias) {
+            if (media.getGenero().toLowerCase().equals(buscaGenero)) {
+                System.out.println(media);
                 cont = 1;
             }
         }
         if (cont == 0) {
-            System.out.println("Não há filme para o gênero desejado!");
+            System.out.println("Não há media para o gênero desejado!");
         }
     }
 
     public boolean removePorTitulo(String apagaTitulo) {
         apagaTitulo = apagaTitulo.toLowerCase();
-        for (Media filme : medias) {
-            if (filme.getTitulo().toLowerCase().equals(apagaTitulo)) {
-                medias.remove(filme);
-                System.out.println("Filme - " + filme.getTitulo() + " - removido com sucesso!");
+        for (Media media : medias) {
+            if (media.getTitulo().toLowerCase().equals(apagaTitulo)) {
+                medias.remove(media);
+                System.out.println(media.getCategoria() + " - " + media.getTitulo() + " - removido com sucesso!");
                 return true;
             }
         }
-        System.out.println("Não há filme com esse título!");
+        System.out.println("Não há media com esse título!");
         return false;
     }
 
@@ -105,33 +105,32 @@ public class MediaRepository {
         return value != null && !value.isBlank();
     }
 
-    //encontrar filme na base pelo título
-    public boolean updateFilme(Media filmeAtualizado, String titulo) {
-        Media filme = buscaPorTitulo(titulo);
-        if (Objects.isNull(filme)) {
+    public boolean updateMedia(Media mediaAtualizada, String titulo) {
+        Media media = buscaPorTitulo(titulo);
+        if (Objects.isNull(media)) {
             return false;
         }
-        String novoTitulo = filmeAtualizado.getTitulo();
-        int novoAno = filmeAtualizado.getAno();
-        String novoDiretor = filmeAtualizado.getDiretor();
-        String novoAtor = filmeAtualizado.getAtor();
-        String novoGenero = filmeAtualizado.getGenero();
+        String novoTitulo = mediaAtualizada.getTitulo();
+        int novoAno = mediaAtualizada.getAno();
+        String novoDiretor = mediaAtualizada.getDiretor();
+        String novaCategoria = mediaAtualizada.getCategoria();
+        List<String> novosAtores = mediaAtualizada.getAtor();
+        String novoGenero = mediaAtualizada.getGenero();
 
-        // Verifica quais campos é preciso atualizar
         if (isValidString(novoTitulo)) {
-            filme.setTitulo(novoTitulo);
+            media.setTitulo(novoTitulo);
         }
         if (isValidString(novoDiretor)) {
-            filme.setDiretor(novoDiretor);
+            media.setDiretor(novoDiretor);
         }
-        if (isValidString(novoAtor)) {
-            filme.setAtor(novoAtor);
+        if (isValidString(novaCategoria)) {
+            media.setCategoria(novaCategoria);
         }
         if (isValidString(novoGenero)) {
-            filme.setGenero(novoGenero);
+            media.setGenero(novoGenero);
         }
-        filme.setAno(novoAno);
-        System.out.println("Filme - " + filme.getTitulo() + " - atualizado com sucesso!");
+        media.setAno(novoAno);
+        System.out.println(media.getCategoria() + " - " + media.getTitulo() + " - atualizado com sucesso!");
         return  true;
     }
 }

@@ -1,16 +1,18 @@
 package Service;
 
-import javax.xml.crypto.Data;
-import java.util.Date;
+import Domain.Cliente;
 
 public class Pagamento {
 
     private String tipoPagamento;
     private String data;
 
-    public Pagamento(String tipoPagamento, String data) {
+    private Cliente cliente;
+
+    public Pagamento(String tipoPagamento, String data, Cliente cliente) {
         this.tipoPagamento = tipoPagamento;
         this.data = data;
+        this.cliente = cliente;
     }
 
     public String getTipoPagamento() {
@@ -24,14 +26,18 @@ public class Pagamento {
     public String getData() {
         return data;
     }
+    public String getCliente() {
+        return cliente.getNome();
+    }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
     public String toString() {
         return "==========Pagamento==========\n" +
+                "Pagador         -> " + cliente.getNome() + '\n' +
                 "Forma Pagamento -> " + tipoPagamento + '\n' +
                 "Data            -> " + data + '\n' +
                 "=========================";

@@ -10,11 +10,12 @@ public class Cliente {
     private String documento;
     private String telefone;
     private Pagamento pagamento;
-    private boolean situacao = false;
+    private String situacao;
 
-    public Cliente(String nome, String documento) {
+    public Cliente(String nome, String documento, String telefone) {
         this.nome = nome;
         this.documento = documento;
+        this.telefone = telefone;
     }
 
     public String getNome() {
@@ -49,17 +50,10 @@ public class Cliente {
         this.pagamento = pagamento;
     }
 
-    public boolean Situacao() {
-        return situacao;
-    }
-
-    public void setSituacao(boolean situacao) {
-        this.situacao = situacao;
-    }
-
-    public String situacao() {
-        if (Objects.isNull(this.pagamento))
+    public String getSituacao() {
+        if (Objects.isNull(this.getPagamento())) {
             return "Inativo";
+        }
         return "Ativo";
     }
 
@@ -69,13 +63,19 @@ public class Cliente {
         return this.telefone;
     }
 
+    public String Assistir(Cliente cliente) {
+        if (cliente.getSituacao().equals("Ativo")){
+            return "Assistindo filme...";
+        }
+        return "Cliente inativo. Efetue o pagamento para liberar o serviço!";
+    }
     @Override
     public String toString() {
         return "==========Cliente==========\n" +
                 "Nome        -> " + nome + '\n' +
                 "Documento   -> " + documento + '\n' +
                 "Telefone    -> " + verificaTelefone() + '\n' +
-                "Situação    -> " + situacao() + '\n' +
+                "Situação    -> " + getSituacao() + '\n' +
                 "=========================";
     }
 }
